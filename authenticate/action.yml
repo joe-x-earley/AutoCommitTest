@@ -2,7 +2,7 @@ name: 'authenticate'
 description: 'Authenticate with Salesforce Org'
 author: 'Pablo Martinez'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: './index.js'
 inputs:
   app_client_id:
@@ -16,13 +16,13 @@ inputs:
     required: false
   certificate_path:
     description: 'Path to the encrypted certificate'
-    required: true    
+    required: true
   certificate_key:
     description: 'Key used to decrypt the certificate'
-    required: true    
+    required: true
   certificate_iv:
     description: 'IV used to decrypt the certificate'
-    required: true        
+    required: true
 branding:
-    icon: 'log-in'
-    color: 'green'
+  icon: 'log-in'
+  color: 'green'

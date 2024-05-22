@@ -2,7 +2,7 @@ name: 'deleteScratchOrg'
 description: 'Delete the scratch org using the sent name'
 author: 'Pablo Martinez'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: './index.js'
 inputs:
   scratch_org_name:

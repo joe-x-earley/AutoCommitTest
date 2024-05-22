@@ -2,7 +2,7 @@ name: 'runTestsInScratchOrg'
 description: 'Run the tests in the scratch org using the sent name.'
 author: 'Pablo Martinez'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: './index.js'
 inputs:
   scratch_org_name:
@@ -10,7 +10,7 @@ inputs:
     required: true
   minimum_test_coverage:
     description: 'Minimum percentage of coverage needed to pass the build. DEFAULT 75'
-    required: false    
+    required: false
 branding:
   icon: 'settings'
   color: 'red'
