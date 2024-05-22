@@ -22,7 +22,7 @@
             'sf project deploy quick',
             '--target-org',
             constants_1.DEFAULT_ALIAS_SF_INSTANCE,
-            '--validateddeployrequestid',
+            '--job-id',
             (0, core_1.getInput)('job_id'),
           ],
         );
