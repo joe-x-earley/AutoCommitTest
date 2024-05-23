@@ -17,10 +17,10 @@
       const run = async () => {
         (0, core_1.info)('*** Deployment of the Package started ***');
         const result = (0, execSync_1.default)(`./${constants_1.DEFAULT_SFDX_CLI_INSTALLATION_FOLDER}/bin/sf`, [
-          'project deploy quick',
-          '--target-org',
+          'force:source:deploy',
+          '--targetusername',
           constants_1.DEFAULT_ALIAS_SF_INSTANCE,
-          '--job-id',
+          '--validateddeployrequestid',
           (0, core_1.getInput)('job_id'),
         ]);
         (0, core_1.info)(`\u001b[35m*** Deployment Result: ${result.toString()} ***`);
