@@ -47,10 +47,8 @@
           params.push('--test-level', configuration.testLevel);
         }
         // execute the validation in the SF instance of the package
-        const commandToExecute = `./${constants_1.DEFAULT_SFDX_CLI_INSTALLATION_FOLDER}/bin/sfdx`;
-        const params2 = [];
-        params2.push('update');
-        (0, exec_1.default)(commandToExecute, params2).then((result) => {
+        const commandToExecute = `./${constants_1.DEFAULT_SFDX_CLI_INSTALLATION_FOLDER}/bin/sf`;
+        (0, exec_1.default)(commandToExecute, params).then((result) => {
           // parsed the result
           const parsedResult = JSON.parse(result);
 
