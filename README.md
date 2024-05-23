@@ -60,10 +60,10 @@ This containts a set of actions (create, push, runTests, delete) to use with Scr
 
 - `scratch_org_name`: Name of the Scratch Org to delete. REQUIRED.
 
-### validateOrDeploy
+### validate
 
-This is an action to do a validation of a deployment (e.g. for Production) or a deployment (e.g. for Sandboxes).
-If it's only a validation, this action will return the `job_id` to be used for a quick deployment.
+This is an action to do a validation of a deployment (e.g. for Production).
+This action will return the `job_id` to be used for a quick deployment.
 This step also handles destructive changes is specified, see example 4.
 
 #### Input Parameters
@@ -72,7 +72,6 @@ This step also handles destructive changes is specified, see example 4.
 - `test_level`: Choose to run or not the tests. Possible values are: RunLocalTests, NoTestRun. OPTIONAL. (Production deployments will run the tests if needed).
 - `org_type`: Type of the Salesforce Org. Possible values are: sandbox, production. OPTIONAL. Defaulted to _sandbox_.
 - `wait_time`: Number of minutes to wait for the command to complete and display results to the terminal window. OPTIONAL. Defaulted to _30_.
-- `deploy`: Deploy the package to the sandbox? or just validate the package?. If the `org_type` is **production** this parameter will not have an impact because for production we need to first validate and then quick deploy. OPTIONAL. Defaulted to _false_.
 - `is_destructive`: Is the deployment a destructive changes deployment?. OPTIONAL. Defaulted to _false_.
 
 #### Output Parameters
@@ -147,49 +146,7 @@ jobs:
           scratch_org_name: ${{ steps.newScratchOrg.outputs.scratch_org_name }}
 ```
 
-2. Deploy to a Sandbox when we push (merge) to master. It will also run the tests.
-
-```
-name: Deployment to Sandbox
-
-# Definition when the workflow should run
-on:
-  push:
-    branches:
-      - master
-    paths:
-      - force-app/main/default/**
-
-# Jobs to be executed
-jobs:
-  Deploy-To-Sandbox:
-    runs-on: ubuntu-latest
-    steps:
-      # Checkout the code in the pull request
-      - name: "Checkout source code"
-        uses: actions/checkout@v2
-
-      - name: 'Install Prerequisites'
-        uses: engPabloMartinez/sf-deploy-github-actions/installRequirements@master
-
-      - name: "Authenticate with Sandbox"
-        uses: engPabloMartinez/sf-deploy-github-actions/authenticate@master
-        with:
-          certificate_path: cert/server.key.enc
-          certificate_key: ${{ secrets.CERTIFICATE_KEY }}
-          certificate_iv: ${{ secrets.CERTIFICATE_IV }}
-          app_client_id: ${{ secrets.SANDBOX_APP_CONSUMER_KEY }}
-          username: ${{ secrets.SANDBOX_USERNAME }}
-
-      - name: "Deploy the Package in Sandbox"
-        uses: engPabloMartinez/sf-deploy-github-actions/validateOrDeploy@master
-        with:
-          package_path: manifest/package.xml
-          deploy: "true"
-          test_level: "RunLocalTests"
-```
-
-3. Deploy to Production when we tag a commit (tag starting with v) in master. This will validate the deployment and if it's successful it will do a quick deployment. After a successful deployment it will create a Github Release, adding the Release Notes from the commits.
+2. Deploy to Production when we tag a commit (tag starting with v) in master. This will validate the deployment and if it's successful it will do a quick deployment. After a successful deployment it will create a Github Release, adding the Release Notes from the commits.
 
 ```
 name: Deployment to Production
@@ -230,7 +187,6 @@ jobs:
         with:
           package_path: manifest/package.xml
           test_level: 'RunLocalTests'
-          deploy: 'false'
           org_type: 'production'
 
       - name: 'Deploy the Package to the Production Org'
@@ -262,7 +218,7 @@ jobs:
             })
 ```
 
-4. Run destructive changes (delete metadata) to a Sandbox when a destructiveChanges.xml is commited to master.
+3. Run destructive changes (delete metadata) to a Sandbox when a destructiveChanges.xml is commited to master.
 
 ```
 name: Destructive Changes to Sandbox
@@ -300,6 +256,5 @@ jobs:
         uses: engPabloMartinez/sf-deploy-github-actions/validateOrDeploy@master
         with:
           package_path: destructiveChanges
-          deploy: "true"
           is_destructive: "true"
 ```
