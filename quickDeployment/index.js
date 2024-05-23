@@ -24,7 +24,7 @@
             constants_1.DEFAULT_ALIAS_SF_INSTANCE,
             '--validateddeployrequestid',
             (0, core_1.getInput)('job_id'),
-            '--ignoreerrors',
+            '--ignorewarnings',
           ],
         );
         (0, core_1.info)(`\u001b[35m*** Deployment Result: ${result.toString()} ***`);
