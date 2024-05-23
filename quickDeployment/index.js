@@ -19,7 +19,7 @@
         const result = (0, execSync_1.default)(
           `./${constants_1.DEFAULT_SFDX_CLI_INSTALLATION_FOLDER}/${constants_1.Commands.SFDX}`,
           [
-            'project deploy quick',
+            'deploy:metadata:quick',
             '--target-org',
             constants_1.DEFAULT_ALIAS_SF_INSTANCE,
             '--job-id',
