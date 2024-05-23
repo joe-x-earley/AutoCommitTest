@@ -18,7 +18,13 @@
         (0, core_1.info)('*** Deployment of the Package started ***');
         const result = (0, execSync_1.default)(
           `./${constants_1.DEFAULT_SFDX_CLI_INSTALLATION_FOLDER}/${constants_1.Commands.SFDX}`,
-          ['deploy:metadata:quick', '--target-org', constants_1.DEFAULT_ALIAS_SF_INSTANCE, '--use-most-recent'],
+          [
+            'project deploy quick',
+            '--target-org',
+            constants_1.DEFAULT_ALIAS_SF_INSTANCE,
+            '--job-id',
+            (0, core_1.getInput)('job_id'),
+          ],
         );
         (0, core_1.info)(`\u001b[35m*** Deployment Result: ${result.toString()} ***`);
       };
