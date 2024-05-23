@@ -19,10 +19,10 @@
         const result = (0, execSync_1.default)(
           `./${constants_1.DEFAULT_SFDX_CLI_INSTALLATION_FOLDER}/${constants_1.Commands.SFDX}`,
           [
-            'force:source:deploy',
-            '--targetusername',
+            'deploy:metadata:quick',
+            '--target-org',
             constants_1.DEFAULT_ALIAS_SF_INSTANCE,
-            '--validateddeployrequestid',
+            '--job-id',
             (0, core_1.getInput)('job_id'),
           ],
         );
