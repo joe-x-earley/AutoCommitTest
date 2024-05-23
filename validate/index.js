@@ -44,7 +44,6 @@
           '--ignore-warnings',
         );
         // check the test level
-        (0, core_1.info)('*** Running Tests ***');
         if (configuration.testLevel) {
           params.push('--test-level', configuration.testLevel);
         }
@@ -52,8 +51,7 @@
         const commandToExecute = `./${constants_1.DEFAULT_SFDX_CLI_INSTALLATION_FOLDER}/bin/sf`;
         const params2 = [];
         params2.push('sf update');
-        (0, exec_1.default)(commandToExecute, params2).then((result) => {});
-        (0, exec_1.default)(commandToExecute, params).then((result) => {
+        (0, exec_1.default)(commandToExecute, params2).then((result) => {
           // parsed the result
           const parsedResult = JSON.parse(result);
 
