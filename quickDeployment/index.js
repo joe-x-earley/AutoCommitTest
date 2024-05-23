@@ -16,16 +16,13 @@
       const constants_1 = __nccwpck_require__(500);
       const run = async () => {
         (0, core_1.info)('*** Deployment of the Package started ***');
-        const result = (0, execSync_1.default)(
-          `./${constants_1.DEFAULT_SFDX_CLI_INSTALLATION_FOLDER}/${constants_1.Commands.SFDX}`,
-          [
-            'project deploy quick',
-            '--target-org',
-            constants_1.DEFAULT_ALIAS_SF_INSTANCE,
-            '--job-id',
-            (0, core_1.getInput)('job_id'),
-          ],
-        );
+        const result = (0, execSync_1.default)(`./${constants_1.DEFAULT_SFDX_CLI_INSTALLATION_FOLDER}/bin/sf`, [
+          'project deploy quick',
+          '--target-org',
+          constants_1.DEFAULT_ALIAS_SF_INSTANCE,
+          '--job-id',
+          (0, core_1.getInput)('job_id'),
+        ]);
         (0, core_1.info)(`\u001b[35m*** Deployment Result: ${result.toString()} ***`);
       };
       exports.deployment = run;
