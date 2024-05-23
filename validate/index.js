@@ -24,7 +24,7 @@
           (0, core_1.getInput)('org_type'),
           (0, core_1.getInput)('is_destructive'),
         );
-        (0, core_1.info)(`*** ${configuration.deploy ? 'Deployment' : 'Validation'} of the Package started ***`);
+        (0, core_1.info)(`*** Validation of the Package started ***`);
         const params = [];
         params.push('project deploy validate');
         // add the right command for package.xml or destructive changes
@@ -49,7 +49,7 @@
           params.push('--test-level', configuration.testLevel);
         }
         // execute the validation in the SF instance of the package
-        const commandToExecute = `./${constants_1.DEFAULT_SFDX_CLI_INSTALLATION_FOLDER}/${constants_1.Commands.SFDX}`;
+        const commandToExecute = `./${constants_1.DEFAULT_SFDX_CLI_INSTALLATION_FOLDER}/bin/sf`;
         (0, exec_1.default)(commandToExecute, params).then((result) => {
           // parsed the result
           const parsedResult = JSON.parse(result);
