@@ -22,7 +22,7 @@
             'force:source:deploy',
             '--target-org',
             constants_1.DEFAULT_ALIAS_SF_INSTANCE,
-            '--job-id',
+            '--validateddeployrequestid',
             (0, core_1.getInput)('job_id'),
           ],
         );
