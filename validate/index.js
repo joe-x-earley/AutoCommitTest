@@ -26,7 +26,7 @@
         );
         (0, core_1.info)(`*** ${configuration.deploy ? 'Deployment' : 'Validation'} of the Package started ***`);
         const params = [];
-        params.push('sf project deploy validate');
+        params.push('project deploy validate');
         // add the right command for package.xml or destructive changes
         if (configuration.isDestructive) {
           params.push('--source-dir');
