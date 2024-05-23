@@ -41,6 +41,7 @@
           '--wait',
           configuration.waitTime,
           '--json',
+          '--ignore-warnings',
         );
         // check the test level
         if (configuration.testLevel) {
