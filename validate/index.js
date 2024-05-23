@@ -26,7 +26,7 @@
         );
         (0, core_1.info)(`*** Validation of the Package started ***`);
         const params = [];
-        params.push('deploy:metadata:validate');
+        params.push('project deploy validate');
         // add the right command for package.xml or destructive changes
         if (configuration.isDestructive) {
           params.push('--source-dir');
